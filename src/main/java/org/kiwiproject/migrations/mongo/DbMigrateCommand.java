@@ -1,4 +1,4 @@
-package org.kiwiproject.migrations;
+package org.kiwiproject.migrations.mongo;
 
 import com.github.cloudyrock.standalone.StandaloneRunner;
 import io.dropwizard.Configuration;

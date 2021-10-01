@@ -1,4 +1,4 @@
-package org.kiwiproject.migrations;
+package org.kiwiproject.migrations.mongo;
 
 import static org.assertj.core.api.Assertions.assertThat;
 

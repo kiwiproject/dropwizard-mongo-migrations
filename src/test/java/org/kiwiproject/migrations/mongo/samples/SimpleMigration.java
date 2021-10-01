@@ -1,4 +1,4 @@
-package org.kiwiproject.migrations.samples;
+package org.kiwiproject.migrations.mongo.samples;
 
 import com.github.cloudyrock.mongock.ChangeLog;
 import com.github.cloudyrock.mongock.ChangeSet;
@@ -11,7 +11,6 @@ public class SimpleMigration {
 
     @ChangeSet(order = "001", id = "changeWithMongoDatabase", author = "crohr")
     public void changeWithMongoDatabase(MongoDatabase db) {
-        System.out.println("I'm in the MIGRATION");
         MongoCollection<Document> myCollection = db.getCollection("myCollection");
         var doc = new Document("testName", "example").append("test", "1");
         myCollection.insertOne(doc);

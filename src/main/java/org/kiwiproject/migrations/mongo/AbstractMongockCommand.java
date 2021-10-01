@@ -1,4 +1,4 @@
-package org.kiwiproject.migrations;
+package org.kiwiproject.migrations.mongo;
 
 import com.github.cloudyrock.mongock.driver.mongodb.v3.driver.MongoCore3Driver;
 import com.github.cloudyrock.standalone.MongockStandalone;

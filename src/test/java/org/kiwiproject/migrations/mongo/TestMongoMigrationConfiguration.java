@@ -1,9 +1,9 @@
-package org.kiwiproject.migrations;
+package org.kiwiproject.migrations.mongo;
 
 public class TestMongoMigrationConfiguration implements MongoMigrationConfiguration<TestMigrationConfiguration> {
 
-    private String mongoUri;
-    private String databaseName;
+    private final String mongoUri;
+    private final String databaseName;
 
     public TestMongoMigrationConfiguration(String mongoUri, String databaseName) {
         this.mongoUri = mongoUri;
@@ -12,7 +12,7 @@ public class TestMongoMigrationConfiguration implements MongoMigrationConfigurat
 
     @Override
     public String getMigrationPackage(TestMigrationConfiguration config) {
-        return "org.kiwiproject.migrations.samples";
+        return "org.kiwiproject.migrations.mongo.samples";
     }
 
     @Override

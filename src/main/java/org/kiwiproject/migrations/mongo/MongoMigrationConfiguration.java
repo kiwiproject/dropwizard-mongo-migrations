@@ -1,4 +1,4 @@
-package org.kiwiproject.migrations;
+package org.kiwiproject.migrations.mongo;
 
 public interface MongoMigrationConfiguration<T> {
     String getMigrationPackage(T config);

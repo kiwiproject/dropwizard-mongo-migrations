@@ -1,4 +1,4 @@
-package org.kiwiproject.migrations;
+package org.kiwiproject.migrations.mongo;
 
 import io.dropwizard.Configuration;
 import io.dropwizard.ConfiguredBundle;

@@ -1,4 +1,4 @@
-package org.kiwiproject.migrations;
+package org.kiwiproject.migrations.mongo;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
@@ -17,7 +17,7 @@ class MigrationsBundleTest {
 
         @Override
         public String getMigrationPackage(TestMigrationConfiguration config) {
-            return "org.kiwiproject.migrations.samples";
+            return "org.kiwiproject.migrations.mongo.samples";
         }
 
         @Override
