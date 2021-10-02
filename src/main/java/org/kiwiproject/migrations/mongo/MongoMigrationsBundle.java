@@ -4,7 +4,7 @@ import io.dropwizard.Configuration;
 import io.dropwizard.ConfiguredBundle;
 import io.dropwizard.setup.Bootstrap;
 
-public abstract class MigrationsBundle <T extends Configuration> implements ConfiguredBundle<T>, MongoMigrationConfiguration<T> {
+public abstract class MongoMigrationsBundle<T extends Configuration> implements ConfiguredBundle<T>, MongoMigrationConfiguration<T> {
 
     private static final String DEFAULT_NAME = "db";
 

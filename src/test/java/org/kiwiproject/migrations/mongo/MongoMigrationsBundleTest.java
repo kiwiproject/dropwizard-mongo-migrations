@@ -9,11 +9,11 @@ import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.RegisterExtension;
 import org.kiwiproject.test.junit.jupiter.MongoServerExtension;
 
-class MigrationsBundleTest {
+class MongoMigrationsBundleTest {
     @RegisterExtension
     static final MongoServerExtension MONGO_SERVER_EXTENSION = new MongoServerExtension();
 
-    private final MigrationsBundle<TestMigrationConfiguration> migrationsBundle = new MigrationsBundle<>() {
+    private final MongoMigrationsBundle<TestMigrationConfiguration> migrationsBundle = new MongoMigrationsBundle<>() {
 
         @Override
         public String getMigrationPackage(TestMigrationConfiguration config) {
