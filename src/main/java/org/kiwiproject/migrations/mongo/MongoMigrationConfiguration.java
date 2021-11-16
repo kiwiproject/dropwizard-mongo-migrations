@@ -5,7 +5,7 @@ public interface MongoMigrationConfiguration<T> {
     String getMongoUri(T config);
     String getDatabaseName(T config);
 
-    default boolean disableTransactions(T config) {
+    default boolean shouldDisableTransactions(T config) {
         return false;
     }
 }

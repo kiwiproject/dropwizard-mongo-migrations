@@ -30,7 +30,7 @@ public abstract class AbstractMongockCommand<T extends Configuration> extends Co
 
         var driver = MongoCore3Driver.withDefaultLock(mongoClient, migrationConfiguration.getDatabaseName(configuration));
 
-        if (migrationConfiguration.disableTransactions(configuration)) {
+        if (migrationConfiguration.shouldDisableTransactions(configuration)) {
             driver.disableTransaction();
         }
 

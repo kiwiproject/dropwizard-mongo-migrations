@@ -26,7 +26,7 @@ public class TestMongoMigrationConfiguration implements MongoMigrationConfigurat
     }
 
     @Override
-    public boolean disableTransactions(TestMigrationConfiguration config) {
+    public boolean shouldDisableTransactions(TestMigrationConfiguration config) {
         return true;
     }
 }
