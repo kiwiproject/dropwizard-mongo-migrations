@@ -24,4 +24,9 @@ public class TestMongoMigrationConfiguration implements MongoMigrationConfigurat
     public String getDatabaseName(TestMigrationConfiguration config) {
         return databaseName;
     }
+
+    @Override
+    public boolean disableTransactions(TestMigrationConfiguration config) {
+        return true;
+    }
 }

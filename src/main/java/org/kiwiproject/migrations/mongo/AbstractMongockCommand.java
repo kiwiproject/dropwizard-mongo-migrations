@@ -29,7 +29,10 @@ public abstract class AbstractMongockCommand<T extends Configuration> extends Co
         var mongoClient = MongoClients.create(migrationConfiguration.getMongoUri(configuration));
 
         var driver = MongoCore3Driver.withDefaultLock(mongoClient, migrationConfiguration.getDatabaseName(configuration));
-        driver.disableTransaction();
+
+        if (migrationConfiguration.disableTransactions(configuration)) {
+            driver.disableTransaction();
+        }
 
         var runner = MongockStandalone.builder()
                 .setDriver(driver)
