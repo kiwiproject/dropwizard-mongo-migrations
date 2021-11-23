@@ -5,6 +5,7 @@ import static java.util.Objects.requireNonNull;
 import com.github.cloudyrock.standalone.StandaloneRunner;
 import io.dropwizard.Configuration;
 import net.sourceforge.argparse4j.inf.Namespace;
+import net.sourceforge.argparse4j.inf.Subparser;
 
 import java.util.SortedMap;
 import java.util.TreeMap;
@@ -23,6 +24,17 @@ public class DbCommand<T extends Configuration> extends AbstractMongockCommand<T
 
     private void addSubcommand(AbstractMongockCommand<T> subcommand) {
         subcommands.put(subcommand.getName(), subcommand);
+    }
+
+    @Override
+    public void configure(Subparser subparser) {
+        for (AbstractMongockCommand<T> subcommand : subcommands.values()) {
+            var cmdParser = subparser.addSubparsers()
+                    .addParser(subcommand.getName())
+                    .setDefault(COMMAND_NAME_ATTR, subcommand.getName())
+                    .description(subcommand.getDescription());
+            subcommand.configure(cmdParser);
+        }
     }
 
     protected void run(Namespace namespace, StandaloneRunner runner) {
