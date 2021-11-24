@@ -16,7 +16,7 @@
     <description>
         This is a small library that provides a Dropwizard command to perform database migrations for Mongo.
     </description>
-    <url>http://github.com/kiwiproject/dropwizard-mongo-migrations</url>
+    <url>https://github.com/kiwiproject/dropwizard-mongo-migrations</url>
     <inceptionYear>2021</inceptionYear>
 
     <scm>
