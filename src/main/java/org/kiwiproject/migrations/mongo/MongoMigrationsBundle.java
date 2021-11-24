@@ -6,8 +6,6 @@ import io.dropwizard.setup.Bootstrap;
 
 public abstract class MongoMigrationsBundle<T extends Configuration> implements ConfiguredBundle<T>, MongoMigrationConfiguration<T> {
 
-    private static final String DEFAULT_NAME = "db";
-
     @SuppressWarnings("unchecked")
     @Override
     public final void initialize(Bootstrap<?> bootstrap) {
@@ -16,7 +14,7 @@ public abstract class MongoMigrationsBundle<T extends Configuration> implements 
     }
 
     public String name() {
-        return DEFAULT_NAME;
+        return getCommandName();
     }
 
 }

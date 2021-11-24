@@ -11,7 +11,21 @@ class MongoMigrationConfigurationTest {
 
     @Test
     void shouldReturnFalseAsDefaultForDisablingTransactions() {
-        var mongoMigrationConfiguration = new MongoMigrationConfiguration<Configuration>() {
+        var mongoMigrationConfiguration = buildSampleMongoMigrationConfiguration();
+
+        var config = new Configuration();
+        assertThat(mongoMigrationConfiguration.shouldDisableTransactions(config)).isFalse();
+    }
+
+    @Test
+    void shouldReturnDefaultCommandName() {
+        var mongoMigrationConfiguration = buildSampleMongoMigrationConfiguration();
+
+        assertThat(mongoMigrationConfiguration.getCommandName()).isEqualTo(MongoMigrationConfiguration.DEFAULT_NAME);
+    }
+
+    private MongoMigrationConfiguration<Configuration> buildSampleMongoMigrationConfiguration() {
+        return new MongoMigrationConfiguration<>() {
             @Override
             public String getMigrationPackage(Configuration config) {
                 return null;
@@ -27,8 +41,5 @@ class MongoMigrationConfigurationTest {
                 return null;
             }
         };
-
-        var config = new Configuration();
-        assertThat(mongoMigrationConfiguration.shouldDisableTransactions(config)).isFalse();
     }
 }
