@@ -43,7 +43,7 @@
 
         <!-- Versions for test dependencies -->
         <kiwi-test.version>1.1.1</kiwi-test.version>
-        <mongo-java-server.version>1.38.0</mongo-java-server.version>
+        <mongo-java-server.version>1.39.0</mongo-java-server.version>
 
         <!-- Sonar properties -->
         <sonar.projectKey>kiwiproject_dropwizard-mongo-migrations</sonar.projectKey>
