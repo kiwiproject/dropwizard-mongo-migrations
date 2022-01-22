@@ -1,12 +1,12 @@
 package org.kiwiproject.migrations.mongo;
 
-import com.github.cloudyrock.mongock.driver.mongodb.v3.driver.MongoCore3Driver;
-import com.github.cloudyrock.standalone.MongockStandalone;
-import com.github.cloudyrock.standalone.StandaloneRunner;
 import com.mongodb.client.MongoClients;
 import io.dropwizard.Configuration;
 import io.dropwizard.cli.ConfiguredCommand;
 import io.dropwizard.setup.Bootstrap;
+import io.mongock.driver.mongodb.v3.driver.MongoCore3Driver;
+import io.mongock.runner.core.executor.MongockRunner;
+import io.mongock.runner.standalone.MongockStandalone;
 import net.sourceforge.argparse4j.inf.Namespace;
 
 public abstract class AbstractMongockCommand<T extends Configuration> extends ConfiguredCommand<T> {
@@ -29,18 +29,13 @@ public abstract class AbstractMongockCommand<T extends Configuration> extends Co
         var mongoClient = MongoClients.create(migrationConfiguration.getMongoUri(configuration));
 
         var driver = MongoCore3Driver.withDefaultLock(mongoClient, migrationConfiguration.getDatabaseName(configuration));
-
-        if (migrationConfiguration.shouldDisableTransactions(configuration)) {
-            driver.disableTransaction();
-        }
-
         var runner = MongockStandalone.builder()
                 .setDriver(driver)
-                .addChangeLogsScanPackage(migrationConfiguration.getMigrationPackage(configuration))
+                .addMigrationScanPackage(migrationConfiguration.getMigrationPackage(configuration))
                 .buildRunner();
 
         run(namespace, runner);
     }
 
-    protected abstract void run(Namespace namespace, StandaloneRunner mongock);
+    protected abstract void run(Namespace namespace, MongockRunner mongock);
 }

@@ -2,8 +2,8 @@ package org.kiwiproject.migrations.mongo;
 
 import static java.util.Objects.requireNonNull;
 
-import com.github.cloudyrock.standalone.StandaloneRunner;
 import io.dropwizard.Configuration;
+import io.mongock.runner.core.executor.MongockRunner;
 import net.sourceforge.argparse4j.inf.Namespace;
 import net.sourceforge.argparse4j.inf.Subparser;
 
@@ -37,7 +37,7 @@ public class DbCommand<T extends Configuration> extends AbstractMongockCommand<T
         }
     }
 
-    protected void run(Namespace namespace, StandaloneRunner runner) {
+    protected void run(Namespace namespace, MongockRunner runner) {
         var subcommand = requireNonNull(subcommands.get(namespace.getString(COMMAND_NAME_ATTR)), "Unable to find the command");
         subcommand.run(namespace, runner);
     }

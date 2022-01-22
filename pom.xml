@@ -32,7 +32,7 @@
         <kiwi-bom.version>0.7.0</kiwi-bom.version>
 
         <!-- TODO: Should this be in the BOM?  It is only in this library currently -->
-        <mongock.version>4.3.8</mongock.version>
+        <mongock.version>5.0.35</mongock.version>
 
         <!-- Versions for test dependencies -->
         <kiwi-test.version>1.1.2</kiwi-test.version>
@@ -54,7 +54,7 @@
             </dependency>
 
             <dependency>
-                <groupId>com.github.cloudyrock.mongock</groupId>
+                <groupId>io.mongock</groupId>
                 <artifactId>mongock-bom</artifactId>
                 <version>${mongock.version}</version>
                 <type>pom</type>
@@ -82,12 +82,12 @@
         </dependency>
 
         <dependency>
-            <groupId>com.github.cloudyrock.mongock</groupId>
+            <groupId>io.mongock</groupId>
             <artifactId>mongodb-v3-driver</artifactId>
         </dependency>
 
         <dependency>
-            <groupId>com.github.cloudyrock.mongock</groupId>
+            <groupId>io.mongock</groupId>
             <artifactId>mongock-standalone</artifactId>
         </dependency>
 
