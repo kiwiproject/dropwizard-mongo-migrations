@@ -8,6 +8,7 @@ import com.mongodb.MongoClientURI;
 import net.sourceforge.argparse4j.ArgumentParsers;
 import net.sourceforge.argparse4j.inf.Namespace;
 import net.sourceforge.argparse4j.inf.Subparser;
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.condition.EnabledIf;
 import org.junit.jupiter.api.extension.RegisterExtension;
@@ -23,19 +24,28 @@ class DbCommandTest {
     @RegisterExtension
     static final MongoServerExtension MONGO_SERVER_EXTENSION = new MongoServerExtension();
 
+    private String mongoConnectionString;
+    private String mongoDatabaseName;
+
+    @BeforeEach
+    void setUp() {
+        mongoConnectionString = MONGO_SERVER_EXTENSION.getConnectionString();
+        mongoDatabaseName = MONGO_SERVER_EXTENSION.getTestDatabaseName();
+    }
+
     @Test
     void testRunSubCommandWithMongoDatabase() {
         var dbCommand = new DbCommand<>("db",
-                new TestMongoMigrationConfiguration(MONGO_SERVER_EXTENSION.getConnectionString(),
-                        MONGO_SERVER_EXTENSION.getTestDatabaseName(), "org.kiwiproject.migrations.mongo.samples.mongodatabase"),
+                new TestMongoMigrationConfiguration(mongoConnectionString,
+                        mongoDatabaseName, "org.kiwiproject.migrations.mongo.samples.mongodatabase"),
                 TestMigrationConfiguration.class);
 
         dbCommand.run(null, new Namespace(Map.of("subcommand", "migrate")), new TestMigrationConfiguration());
 
-        var uri = new MongoClientURI(MONGO_SERVER_EXTENSION.getConnectionString());
+        var uri = new MongoClientURI(mongoConnectionString);
         var client = new MongoClient(uri);
 
-        var db = client.getDatabase(MONGO_SERVER_EXTENSION.getTestDatabaseName());
+        var db = client.getDatabase(mongoDatabaseName);
 
         assertThat(db.getCollection("myCollection").countDocuments()).isEqualTo(1);
     }
@@ -44,16 +54,16 @@ class DbCommandTest {
     @EnabledIf("usesSpringData")
     void testRunSubCommandWithMongoTemplate() {
         var dbCommand = new DbCommand<>("db",
-                new TestMongoMigrationConfiguration(MONGO_SERVER_EXTENSION.getConnectionString(),
-                        MONGO_SERVER_EXTENSION.getTestDatabaseName(), "org.kiwiproject.migrations.mongo.samples.mongotemplate"),
+                new TestMongoMigrationConfiguration(mongoConnectionString,
+                        mongoDatabaseName, "org.kiwiproject.migrations.mongo.samples.mongotemplate"),
                 TestMigrationConfiguration.class);
 
         dbCommand.run(null, new Namespace(Map.of("subcommand", "migrate")), new TestMigrationConfiguration());
 
-        var uri = new MongoClientURI(MONGO_SERVER_EXTENSION.getConnectionString());
+        var uri = new MongoClientURI(mongoConnectionString);
         var client = new MongoClient(uri);
 
-        var db = client.getDatabase(MONGO_SERVER_EXTENSION.getTestDatabaseName());
+        var db = client.getDatabase(mongoDatabaseName);
 
         assertThat(db.getCollection("myTemplateCollection").countDocuments()).isEqualTo(1);
     }
@@ -71,8 +81,8 @@ class DbCommandTest {
     @Test
     void testPrintHelp() throws Exception {
         var dbCommand = new DbCommand<>("db",
-                new TestMongoMigrationConfiguration(MONGO_SERVER_EXTENSION.getConnectionString(),
-                        MONGO_SERVER_EXTENSION.getTestDatabaseName(), "org.kiwiproject.migrations.mongo.samples.mongodatabase"),
+                new TestMongoMigrationConfiguration(mongoConnectionString,
+                        mongoDatabaseName, "org.kiwiproject.migrations.mongo.samples.mongodatabase"),
                 TestMigrationConfiguration.class);
 
         final ByteArrayOutputStream baos = new ByteArrayOutputStream();
@@ -103,8 +113,8 @@ class DbCommandTest {
     @Test
     void shouldReturnConfigurationClass() {
         var dbCommand = new DbCommand<>("db",
-                new TestMongoMigrationConfiguration(MONGO_SERVER_EXTENSION.getConnectionString(),
-                        MONGO_SERVER_EXTENSION.getTestDatabaseName(), "org.kiwiproject.migrations.mongo.samples.mongodatabase"),
+                new TestMongoMigrationConfiguration(mongoConnectionString,
+                        mongoDatabaseName, "org.kiwiproject.migrations.mongo.samples.mongodatabase"),
                 TestMigrationConfiguration.class);
 
         assertThat(dbCommand.getConfigurationClass()).isEqualTo(TestMigrationConfiguration.class);

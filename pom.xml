@@ -100,21 +100,20 @@
             <scope>test</scope>
         </dependency>
 
-        <!-- Uncomment mongodb-v3-driver to test the v3 driver with migrations -->
+        <!-- Comment/Uncomment the drivers below to ensure only the desired driver is being used in tests -->
+
 <!--        <dependency>-->
 <!--            <groupId>io.mongock</groupId>-->
 <!--            <artifactId>mongodb-v3-driver</artifactId>-->
 <!--            <scope>test</scope>-->
 <!--        </dependency>-->
 
-        <!-- Uncomment mongodb-sync-v4-driver to test the v4 driver with migrations -->
 <!--        <dependency>-->
 <!--            <groupId>io.mongock</groupId>-->
 <!--            <artifactId>mongodb-sync-v4-driver</artifactId>-->
 <!--            <scope>test</scope>-->
 <!--        </dependency>-->
 
-        <!-- Uncomment mongodb-springdata-v2-driver and spring-data-mongodb to test the spring data migrations -->
         <!-- TODO: When kiwi updates to spring data v3 change this to use v3 driver -->
         <dependency>
             <groupId>io.mongock</groupId>
@@ -128,7 +127,7 @@
             </exclusions>
         </dependency>
 
-
+        <!-- This is needed if the mongodb-springdata-v2-driver is being used -->
         <dependency>
             <groupId>org.springframework.data</groupId>
             <artifactId>spring-data-mongodb</artifactId>
