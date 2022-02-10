@@ -83,11 +83,6 @@
 
         <dependency>
             <groupId>io.mongock</groupId>
-            <artifactId>mongodb-v3-driver</artifactId>
-        </dependency>
-
-        <dependency>
-            <groupId>io.mongock</groupId>
             <artifactId>mongock-standalone</artifactId>
         </dependency>
 
@@ -102,6 +97,40 @@
         <dependency>
             <groupId>de.bwaldvogel</groupId>
             <artifactId>mongo-java-server</artifactId>
+            <scope>test</scope>
+        </dependency>
+
+        <!-- Comment/Uncomment the drivers below to ensure only the desired driver is being used in tests -->
+
+<!--        <dependency>-->
+<!--            <groupId>io.mongock</groupId>-->
+<!--            <artifactId>mongodb-v3-driver</artifactId>-->
+<!--            <scope>test</scope>-->
+<!--        </dependency>-->
+
+<!--        <dependency>-->
+<!--            <groupId>io.mongock</groupId>-->
+<!--            <artifactId>mongodb-sync-v4-driver</artifactId>-->
+<!--            <scope>test</scope>-->
+<!--        </dependency>-->
+
+        <!-- TODO: When kiwi updates to spring data v3 change this to use v3 driver -->
+        <dependency>
+            <groupId>io.mongock</groupId>
+            <artifactId>mongodb-springdata-v2-driver</artifactId>
+            <scope>test</scope>
+            <exclusions>
+                <exclusion>
+                    <groupId>org.springframework</groupId>
+                    <artifactId>spring-context</artifactId>
+                </exclusion>
+            </exclusions>
+        </dependency>
+
+        <!-- This is needed if the mongodb-springdata-v2-driver is being used -->
+        <dependency>
+            <groupId>org.springframework.data</groupId>
+            <artifactId>spring-data-mongodb</artifactId>
             <scope>test</scope>
         </dependency>
 
