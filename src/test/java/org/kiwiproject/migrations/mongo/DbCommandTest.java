@@ -9,6 +9,7 @@ import net.sourceforge.argparse4j.ArgumentParsers;
 import net.sourceforge.argparse4j.inf.Namespace;
 import net.sourceforge.argparse4j.inf.Subparser;
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.condition.EnabledIf;
 import org.junit.jupiter.api.extension.RegisterExtension;
 import org.kiwiproject.test.junit.jupiter.MongoServerExtension;
 
@@ -22,12 +23,12 @@ class DbCommandTest {
     @RegisterExtension
     static final MongoServerExtension MONGO_SERVER_EXTENSION = new MongoServerExtension();
 
-    private final DbCommand<TestMigrationConfiguration> dbCommand = new DbCommand<>("db",
-            new TestMongoMigrationConfiguration(MONGO_SERVER_EXTENSION.getConnectionString(), MONGO_SERVER_EXTENSION.getTestDatabaseName()),
-            TestMigrationConfiguration.class);
-
     @Test
-    void testRunSubCommand() {
+    void testRunSubCommandWithMongoDatabase() {
+        var dbCommand = new DbCommand<>("db",
+                new TestMongoMigrationConfiguration(MONGO_SERVER_EXTENSION.getConnectionString(),
+                        MONGO_SERVER_EXTENSION.getTestDatabaseName(), "org.kiwiproject.migrations.mongo.samples.mongodatabase"),
+                TestMigrationConfiguration.class);
 
         dbCommand.run(null, new Namespace(Map.of("subcommand", "migrate")), new TestMigrationConfiguration());
 
@@ -40,7 +41,40 @@ class DbCommandTest {
     }
 
     @Test
+    @EnabledIf("usesSpringData")
+    void testRunSubCommandWithMongoTemplate() {
+        var dbCommand = new DbCommand<>("db",
+                new TestMongoMigrationConfiguration(MONGO_SERVER_EXTENSION.getConnectionString(),
+                        MONGO_SERVER_EXTENSION.getTestDatabaseName(), "org.kiwiproject.migrations.mongo.samples.mongotemplate"),
+                TestMigrationConfiguration.class);
+
+        dbCommand.run(null, new Namespace(Map.of("subcommand", "migrate")), new TestMigrationConfiguration());
+
+        var uri = new MongoClientURI(MONGO_SERVER_EXTENSION.getConnectionString());
+        var client = new MongoClient(uri);
+
+        var db = client.getDatabase(MONGO_SERVER_EXTENSION.getTestDatabaseName());
+
+        assertThat(db.getCollection("myTemplateCollection").countDocuments()).isEqualTo(1);
+    }
+
+    @SuppressWarnings("unused")
+    boolean usesSpringData() {
+        try {
+            var clazz = Class.forName("io.mongock.driver.mongodb.springdata.v2.SpringDataMongoV2Driver");
+            return true;
+        } catch (ClassNotFoundException e) {
+            return false;
+        }
+    }
+
+    @Test
     void testPrintHelp() throws Exception {
+        var dbCommand = new DbCommand<>("db",
+                new TestMongoMigrationConfiguration(MONGO_SERVER_EXTENSION.getConnectionString(),
+                        MONGO_SERVER_EXTENSION.getTestDatabaseName(), "org.kiwiproject.migrations.mongo.samples.mongodatabase"),
+                TestMigrationConfiguration.class);
+
         final ByteArrayOutputStream baos = new ByteArrayOutputStream();
         createSubparser(dbCommand).printHelp(new PrintWriter(new OutputStreamWriter(baos, UTF_8), true));
         assertThat(baos.toString(UTF_8.name())).isEqualTo(String.format(
@@ -68,6 +102,11 @@ class DbCommandTest {
 
     @Test
     void shouldReturnConfigurationClass() {
+        var dbCommand = new DbCommand<>("db",
+                new TestMongoMigrationConfiguration(MONGO_SERVER_EXTENSION.getConnectionString(),
+                        MONGO_SERVER_EXTENSION.getTestDatabaseName(), "org.kiwiproject.migrations.mongo.samples.mongodatabase"),
+                TestMigrationConfiguration.class);
+
         assertThat(dbCommand.getConfigurationClass()).isEqualTo(TestMigrationConfiguration.class);
     }
 }

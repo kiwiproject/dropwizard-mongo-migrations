@@ -1,4 +1,4 @@
-package org.kiwiproject.migrations.mongo.samples;
+package org.kiwiproject.migrations.mongo.samples.mongodatabase;
 
 import com.mongodb.client.MongoCollection;
 import com.mongodb.client.MongoDatabase;

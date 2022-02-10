@@ -4,15 +4,17 @@ public class TestMongoMigrationConfiguration implements MongoMigrationConfigurat
 
     private final String mongoUri;
     private final String databaseName;
+    private final String migrationPackage;
 
-    public TestMongoMigrationConfiguration(String mongoUri, String databaseName) {
+    public TestMongoMigrationConfiguration(String mongoUri, String databaseName, String migrationPackage) {
         this.mongoUri = mongoUri;
         this.databaseName = databaseName;
+        this.migrationPackage = migrationPackage;
     }
 
     @Override
     public String getMigrationPackage(TestMigrationConfiguration config) {
-        return "org.kiwiproject.migrations.mongo.samples";
+        return migrationPackage;
     }
 
     @Override
