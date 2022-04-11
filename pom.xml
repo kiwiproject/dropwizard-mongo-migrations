@@ -29,7 +29,7 @@
     <properties>
         <!-- Versions for required dependencies -->
         <kiwi.version>1.3.0</kiwi.version>
-        <kiwi-bom.version>0.7.1</kiwi-bom.version>
+        <kiwi-bom.version>0.7.2</kiwi-bom.version>
 
         <!-- TODO: Should this be in the BOM?  It is only in this library currently -->
         <mongock.version>5.0.39</mongock.version>
