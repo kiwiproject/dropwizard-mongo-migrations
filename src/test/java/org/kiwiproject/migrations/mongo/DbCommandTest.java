@@ -9,7 +9,6 @@ import net.sourceforge.argparse4j.inf.Namespace;
 import net.sourceforge.argparse4j.inf.Subparser;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
-import org.junit.jupiter.api.condition.EnabledIf;
 import org.junit.jupiter.api.extension.RegisterExtension;
 
 import java.io.ByteArrayOutputStream;
@@ -49,7 +48,6 @@ class DbCommandTest {
     }
 
     @Test
-    @EnabledIf("usesSpringData")
     void testRunSubCommandWithMongoTemplate() {
         var dbCommand = new DbCommand<>("db",
                 new TestMongoMigrationConfiguration(mongoConnectionString,
@@ -63,16 +61,6 @@ class DbCommandTest {
         var db = client.getDatabase(mongoDatabaseName);
 
         assertThat(db.getCollection("myTemplateCollection").countDocuments()).isEqualTo(1);
-    }
-
-    @SuppressWarnings("unused")
-    boolean usesSpringData() {
-        try {
-            var clazz = Class.forName("io.mongock.driver.mongodb.springdata.v3.SpringDataMongoV3Driver");
-            return true;
-        } catch (ClassNotFoundException e) {
-            return false;
-        }
     }
 
     @Test

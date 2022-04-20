@@ -2,11 +2,17 @@ package org.kiwiproject.migrations.mongo;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
+import com.mongodb.client.MongoClients;
+
 import io.dropwizard.Application;
 import io.dropwizard.setup.Bootstrap;
 import io.dropwizard.setup.Environment;
+import io.mongock.driver.api.driver.ConnectionDriver;
+import io.mongock.driver.mongodb.springdata.v3.SpringDataMongoV3Driver;
+
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.RegisterExtension;
+import org.springframework.data.mongodb.core.MongoTemplate;
 
 class MongoMigrationsBundleTest {
 
@@ -29,6 +35,13 @@ class MongoMigrationsBundleTest {
         @Override
         public String getDatabaseName(TestMigrationConfiguration config) {
             return MONGO_SERVER_EXTENSION.getTestDatabaseName();
+        }
+
+        @Override
+        public ConnectionDriver getConnectionDriver(TestMigrationConfiguration config) {
+            var mongoClient = MongoClients.create(getMongoUri(config));
+            var mongoTemplate = new MongoTemplate(mongoClient, getDatabaseName(config));
+            return SpringDataMongoV3Driver.withDefaultLock(mongoTemplate);
         }
     };
 
