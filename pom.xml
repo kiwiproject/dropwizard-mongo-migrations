@@ -76,9 +76,18 @@
             <version>${kiwi.version}</version>
         </dependency>
 
+        <!-- TODO Remove assuming we decide to drop support for Mongo 3.x driver (I think we should) -->
+        <!--
         <dependency>
             <groupId>org.mongodb</groupId>
             <artifactId>mongo-java-driver</artifactId>
+        </dependency>
+        -->
+
+        <dependency>
+            <groupId>org.mongodb</groupId>
+            <artifactId>mongodb-driver-sync</artifactId>
+            <version>4.5.1</version>
         </dependency>
 
         <dependency>
@@ -100,6 +109,7 @@
             <scope>test</scope>
         </dependency>
 
+        <!-- TODO Does the following go away if we remove all the "discovery" code? -->
         <!-- Comment/Uncomment the drivers below to ensure only the desired driver is being used in tests -->
 
 <!--        <dependency>-->
@@ -108,16 +118,15 @@
 <!--            <scope>test</scope>-->
 <!--        </dependency>-->
 
-<!--        <dependency>-->
-<!--            <groupId>io.mongock</groupId>-->
-<!--            <artifactId>mongodb-sync-v4-driver</artifactId>-->
-<!--            <scope>test</scope>-->
-<!--        </dependency>-->
-
-        <!-- TODO: When kiwi updates to spring data v3 change this to use v3 driver -->
         <dependency>
             <groupId>io.mongock</groupId>
-            <artifactId>mongodb-springdata-v2-driver</artifactId>
+            <artifactId>mongodb-sync-v4-driver</artifactId>
+            <scope>test</scope>
+        </dependency>
+
+        <dependency>
+            <groupId>io.mongock</groupId>
+            <artifactId>mongodb-springdata-v3-driver</artifactId>
             <scope>test</scope>
             <exclusions>
                 <exclusion>
@@ -127,11 +136,19 @@
             </exclusions>
         </dependency>
 
-        <!-- This is needed if the mongodb-springdata-v2-driver is being used -->
+        <!-- This is needed if the mongodb-springdata-v3-driver is being used -->
         <dependency>
             <groupId>org.springframework.data</groupId>
             <artifactId>spring-data-mongodb</artifactId>
+            <!-- TODO: Also test with new version 3.3.4 -->
+            <version>3.3.3</version>
             <scope>test</scope>
+            <exclusions>
+                <exclusion>
+                    <groupId>org.mongodb</groupId>
+                    <artifactId>mongodb-driver-core</artifactId>
+                </exclusion>
+            </exclusions>
         </dependency>
 
     </dependencies>

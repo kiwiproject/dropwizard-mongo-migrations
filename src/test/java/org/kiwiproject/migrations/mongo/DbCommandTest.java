@@ -3,8 +3,7 @@ package org.kiwiproject.migrations.mongo;
 import static java.nio.charset.StandardCharsets.UTF_8;
 import static org.assertj.core.api.Assertions.assertThat;
 
-import com.mongodb.MongoClient;
-import com.mongodb.MongoClientURI;
+import com.mongodb.client.MongoClients;
 import net.sourceforge.argparse4j.ArgumentParsers;
 import net.sourceforge.argparse4j.inf.Namespace;
 import net.sourceforge.argparse4j.inf.Subparser;
@@ -12,7 +11,6 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.condition.EnabledIf;
 import org.junit.jupiter.api.extension.RegisterExtension;
-import org.kiwiproject.test.junit.jupiter.MongoServerExtension;
 
 import java.io.ByteArrayOutputStream;
 import java.io.OutputStreamWriter;
@@ -21,6 +19,7 @@ import java.util.Map;
 
 class DbCommandTest {
 
+    // TODO This will NOT work until have the version from kiwi-test that uses the Mongo 4.x driver
     @RegisterExtension
     static final MongoServerExtension MONGO_SERVER_EXTENSION = new MongoServerExtension();
 
@@ -42,8 +41,7 @@ class DbCommandTest {
 
         dbCommand.run(null, new Namespace(Map.of("subcommand", "migrate")), new TestMigrationConfiguration());
 
-        var uri = new MongoClientURI(mongoConnectionString);
-        var client = new MongoClient(uri);
+        var client = MongoClients.create(mongoConnectionString);
 
         var db = client.getDatabase(mongoDatabaseName);
 
@@ -60,8 +58,7 @@ class DbCommandTest {
 
         dbCommand.run(null, new Namespace(Map.of("subcommand", "migrate")), new TestMigrationConfiguration());
 
-        var uri = new MongoClientURI(mongoConnectionString);
-        var client = new MongoClient(uri);
+        var client = MongoClients.create(mongoConnectionString);
 
         var db = client.getDatabase(mongoDatabaseName);
 
@@ -71,7 +68,7 @@ class DbCommandTest {
     @SuppressWarnings("unused")
     boolean usesSpringData() {
         try {
-            var clazz = Class.forName("io.mongock.driver.mongodb.springdata.v2.SpringDataMongoV2Driver");
+            var clazz = Class.forName("io.mongock.driver.mongodb.springdata.v3.SpringDataMongoV3Driver");
             return true;
         } catch (ClassNotFoundException e) {
             return false;

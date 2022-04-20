@@ -49,8 +49,7 @@ public abstract class AbstractMongockCommand<T extends Configuration> extends Co
 
     // TODO: More of a question, do we want to allow through config to pass in an explicit driver classname instead of relying on auto discovery?
     private ConnectionDriver findDriver(MongoClient client, String databaseName) {
-        // TODO: When kiwi updates to spring data 3, then change this class to the v3 Spring data mongo driver
-        var springDataDriverClass = findDriverClass("io.mongock.driver.mongodb.springdata.v2.SpringDataMongoV2Driver");
+        var springDataDriverClass = findDriverClass("io.mongock.driver.mongodb.springdata.v3.SpringDataMongoV3Driver");
 
         if (springDataDriverClass.isPresent()) {
             return createSpringDataDriver(springDataDriverClass.get(), client, databaseName);
@@ -59,6 +58,7 @@ public abstract class AbstractMongockCommand<T extends Configuration> extends Co
         var syncDriverClass = findDriverClass("io.mongock.driver.mongodb.v3.driver.MongoCore3Driver")
                 .or(() -> findDriverClass("io.mongock.driver.mongodb.sync.v4.driver.MongoSync4Driver"))
                 .orElseThrow(() -> new IllegalStateException("Unable to find a valid Mongo driver for Mongock"));
+        // TODO Log (trace) the driver that was found?
 
         return createSyncDriver(syncDriverClass, client, databaseName);
     }
