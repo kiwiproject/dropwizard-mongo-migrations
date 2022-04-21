@@ -16,7 +16,6 @@ import org.springframework.data.mongodb.core.MongoTemplate;
 
 class MongoMigrationsBundleTest {
 
-    // TODO This will NOT work until have the version from kiwi-test that uses the Mongo 4.x driver
     @RegisterExtension
     static final MongoServerExtension MONGO_SERVER_EXTENSION = new MongoServerExtension();
 

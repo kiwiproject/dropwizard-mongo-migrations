@@ -18,7 +18,6 @@ import java.util.Map;
 
 class DbCommandTest {
 
-    // TODO This will NOT work until have the version from kiwi-test that uses the Mongo 4.x driver
     @RegisterExtension
     static final MongoServerExtension MONGO_SERVER_EXTENSION = new MongoServerExtension();
 
