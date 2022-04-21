@@ -23,7 +23,7 @@ import java.util.concurrent.ThreadLocalRandom;
 // !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
 //
 // TODO THIS IS A TEMPORARY HACK UNTIL WE HAVE UPDATED kiwi-test TO THE NEW MONGO 4.X DRIVER.
-//  AFTER THAT, THIS ENTIRE CLASS NEEDS TO BE DELETED!!!!!
+//  AFTER THAT, THIS ENTIRE CLASS NEEDS TO BE DELETED AND USE THE ONE FROM kiwi-test 2.0.0
 //
 // !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
 // !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
@@ -66,7 +66,7 @@ import java.util.concurrent.ThreadLocalRandom;
  * @see MongoDbExtension
  */
 @Slf4j
-public class MongoServerExtension implements BeforeAllCallback, AfterAllCallback, AfterEachCallback {
+class MongoServerExtension implements BeforeAllCallback, AfterAllCallback, AfterEachCallback {
 
     private static final ServerVersion DEFAULT_SERVER_VERSION = ServerVersion.MONGO_3_6;
 
