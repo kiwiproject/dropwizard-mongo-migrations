@@ -22,8 +22,10 @@ import java.util.concurrent.ThreadLocalRandom;
 // !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
 // !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
 //
-// TODO THIS IS A TEMPORARY HACK UNTIL WE HAVE UPDATED kiwi-test TO THE NEW MONGO 4.X DRIVER.
-//  AFTER THAT, THIS ENTIRE CLASS NEEDS TO BE DELETED AND USE THE ONE FROM kiwi-test 2.0.0
+// TODO Remove and replace with the eponymous extension from kiwi-test once 2.0.0 is released.
+//  This is a temporary hack until we have updated kiwi-test in 2.0.0 to work with the Mongo
+//  4.x driver. It has been copied directly from kiwi-test (after it was updated to work with
+//  the Mongo 4.x driver.)
 //
 // !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
 // !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
