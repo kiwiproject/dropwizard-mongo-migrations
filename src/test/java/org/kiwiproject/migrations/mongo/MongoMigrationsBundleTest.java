@@ -12,6 +12,7 @@ import io.mongock.driver.mongodb.springdata.v3.SpringDataMongoV3Driver;
 
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.RegisterExtension;
+import org.kiwiproject.test.junit.jupiter.MongoServerExtension;
 import org.springframework.data.mongodb.core.MongoTemplate;
 
 class MongoMigrationsBundleTest {
