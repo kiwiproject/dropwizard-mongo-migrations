@@ -10,6 +10,7 @@ import net.sourceforge.argparse4j.inf.Subparser;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.RegisterExtension;
+import org.kiwiproject.test.junit.jupiter.MongoServerExtension;
 
 import java.io.ByteArrayOutputStream;
 import java.io.OutputStreamWriter;
