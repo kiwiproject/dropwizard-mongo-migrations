@@ -10,7 +10,7 @@
     </parent>
 
     <artifactId>dropwizard-mongo-migrations</artifactId>
-    <version>1.0.1-SNAPSHOT</version>
+    <version>1.0.1</version>
 
     <name>${project.groupId}:${project.artifactId}</name>
     <description>
@@ -23,7 +23,7 @@
         <connection>scm:git:https://github.com/kiwiproject/dropwizard-mongo-migrations.git</connection>
         <developerConnection>scm:git:git@github.com:kiwiproject/dropwizard-mongo-migrations.git</developerConnection>
         <url>https://github.com/kiwiproject/dropwizard-mongo-migrations</url>
-        <tag>HEAD</tag>
+        <tag>v1.0.1</tag>
     </scm>
 
     <properties>
