@@ -32,7 +32,7 @@
         <kiwi-bom.version>0.14.0</kiwi-bom.version>
 
         <!-- TODO: Should this be in the BOM?  It is only in this library currently -->
-        <mongock.version>5.1.0</mongock.version>
+        <mongock.version>5.1.1</mongock.version>
 
         <!-- Versions for test dependencies -->
         <kiwi-test.version>2.1.0</kiwi-test.version>
