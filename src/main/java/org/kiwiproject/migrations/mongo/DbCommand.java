@@ -37,6 +37,7 @@ public class DbCommand<T extends Configuration> extends AbstractMongockCommand<T
         }
     }
 
+    @Override
     protected void run(Namespace namespace, MongockRunner runner) {
         var subcommand = requireNonNull(subcommands.get(namespace.getString(COMMAND_NAME_ATTR)), "Unable to find the command");
         subcommand.run(namespace, runner);
