@@ -6,7 +6,7 @@
 [![CodeQL](https://github.com/kiwiproject/dropwizard-mongo-migrations/actions/workflows/codeql.yml/badge.svg)](https://github.com/kiwiproject/dropwizard-mongo-migrations/actions/workflows/codeql.yml)
 [![javadoc](https://javadoc.io/badge2/org.kiwiproject/dropwizard-mongo-migrations/javadoc.svg)](https://javadoc.io/doc/org.kiwiproject/dropwizard-mongo-migrations)
 [![License: MIT](https://img.shields.io/badge/License-MIT-blue.svg)](https://opensource.org/licenses/MIT)
-[![Maven Central](https://img.shields.io/maven-central/v/org.kiwiproject/dropwizard-mongo-migrations)](https://central.sonatype.com/artifact/org.kiwiproject/dropwizard-mongo-migrations/1.0.5)
+[![Maven Central](https://img.shields.io/maven-central/v/org.kiwiproject/dropwizard-mongo-migrations)](https://central.sonatype.com/artifact/org.kiwiproject/dropwizard-mongo-migrations/)
 
 Dropwizard Mongo Migrations is a simple library to assist in migrating Mongo databases in
 [Dropwizard](https://www.dropwizard.io) applications. This library provides a set of Dropwizard commands similar to
