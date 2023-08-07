@@ -10,7 +10,7 @@
 
 Dropwizard Mongo Migrations is a simple library to assist in migrating Mongo databases in
 [Dropwizard](https://www.dropwizard.io) applications. This library provides a set of Dropwizard commands similar to
-Dropwizard's migration library for RDBS systems.
+Dropwizard's migration library for RDBMS systems.
 
 The migrations are performed by the library [Mongock](https://www.mongock.io). This bundle sets up the configuration to
 use the Mongock migration framework as a
