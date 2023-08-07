@@ -1,11 +1,9 @@
 package org.kiwiproject.migrations.mongo;
 
 import com.mongodb.client.MongoClients;
-
-import org.springframework.data.mongodb.core.MongoTemplate;
-
 import io.mongock.driver.api.driver.ConnectionDriver;
-import io.mongock.driver.mongodb.springdata.v3.SpringDataMongoV3Driver;
+import io.mongock.driver.mongodb.springdata.v4.SpringDataMongoV4Driver;
+import org.springframework.data.mongodb.core.MongoTemplate;
 
 public class TestMongoMigrationConfiguration implements MongoMigrationConfiguration<TestMigrationConfiguration> {
 
@@ -43,6 +41,6 @@ public class TestMongoMigrationConfiguration implements MongoMigrationConfigurat
     public ConnectionDriver getConnectionDriver(TestMigrationConfiguration config) {
         var mongoClient = MongoClients.create(mongoUri);
         var mongoTemplate = new MongoTemplate(mongoClient, databaseName);
-        return SpringDataMongoV3Driver.withDefaultLock(mongoTemplate);
+        return SpringDataMongoV4Driver.withDefaultLock(mongoTemplate);
     }
 }
