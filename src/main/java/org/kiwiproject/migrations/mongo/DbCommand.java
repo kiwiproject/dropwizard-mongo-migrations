@@ -2,7 +2,7 @@ package org.kiwiproject.migrations.mongo;
 
 import static java.util.Objects.requireNonNull;
 
-import io.dropwizard.Configuration;
+import io.dropwizard.core.Configuration;
 import io.mongock.runner.core.executor.MongockRunner;
 import net.sourceforge.argparse4j.inf.Namespace;
 import net.sourceforge.argparse4j.inf.Subparser;

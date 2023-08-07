@@ -1,6 +1,6 @@
 package org.kiwiproject.migrations.mongo;
 
-import io.dropwizard.Configuration;
+import io.dropwizard.core.Configuration;
 import io.mongock.runner.core.executor.MongockRunner;
 import net.sourceforge.argparse4j.inf.Namespace;
 

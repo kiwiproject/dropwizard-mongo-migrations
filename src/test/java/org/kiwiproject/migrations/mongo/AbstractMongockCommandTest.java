@@ -3,16 +3,15 @@ package org.kiwiproject.migrations.mongo;
 import static org.assertj.core.api.Assertions.assertThatIllegalStateException;
 import static org.mockito.Mockito.mock;
 
+import io.dropwizard.core.setup.Bootstrap;
+import io.mongock.driver.api.driver.ConnectionDriver;
+import io.mongock.runner.core.executor.MongockRunner;
+import net.sourceforge.argparse4j.inf.Namespace;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Nested;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.kiwiproject.test.junit.jupiter.params.provider.AsciiOnlyBlankStringSource;
-
-import io.dropwizard.setup.Bootstrap;
-import io.mongock.driver.api.driver.ConnectionDriver;
-import io.mongock.runner.core.executor.MongockRunner;
-import net.sourceforge.argparse4j.inf.Namespace;
 
 class AbstractMongockCommandTest {
 

@@ -6,11 +6,11 @@
     <parent>
         <artifactId>kiwi-parent</artifactId>
         <groupId>org.kiwiproject</groupId>
-        <version>2.0.20</version>
+        <version>3.0.1</version>
     </parent>
 
     <artifactId>dropwizard-mongo-migrations</artifactId>
-    <version>1.0.8-SNAPSHOT</version>
+    <version>2.0.0-SNAPSHOT</version>
 
     <name>${project.groupId}:${project.artifactId}</name>
     <description>
@@ -28,14 +28,14 @@
 
     <properties>
         <!-- Versions for required dependencies -->
-        <kiwi.version>2.7.0</kiwi.version>
-        <kiwi-bom.version>1.1.1</kiwi-bom.version>
+        <kiwi.version>3.0.0</kiwi.version>
+        <kiwi-bom.version>2.0.0</kiwi-bom.version>
 
         <!-- TODO: Should this be in the BOM?  It is only in this library currently -->
         <mongock.version>5.3.3</mongock.version>
 
         <!-- Versions for test dependencies -->
-        <kiwi-test.version>2.4.0</kiwi-test.version>
+        <kiwi-test.version>3.0.0</kiwi-test.version>
 
         <!-- Sonar properties -->
         <sonar.projectKey>kiwiproject_dropwizard-mongo-migrations</sonar.projectKey>
@@ -112,14 +112,8 @@
 
         <dependency>
             <groupId>io.mongock</groupId>
-            <artifactId>mongodb-springdata-v3-driver</artifactId>
+            <artifactId>mongodb-springdata-v4-driver</artifactId>
             <scope>test</scope>
-            <exclusions>
-                <exclusion>
-                    <groupId>org.springframework</groupId>
-                    <artifactId>spring-context</artifactId>
-                </exclusion>
-            </exclusions>
         </dependency>
 
         <dependency>

@@ -4,9 +4,9 @@ import static com.google.common.base.Preconditions.checkState;
 import static java.util.Objects.nonNull;
 import static org.apache.commons.lang3.StringUtils.isNotBlank;
 
-import io.dropwizard.Configuration;
-import io.dropwizard.cli.ConfiguredCommand;
-import io.dropwizard.setup.Bootstrap;
+import io.dropwizard.core.Configuration;
+import io.dropwizard.core.cli.ConfiguredCommand;
+import io.dropwizard.core.setup.Bootstrap;
 import io.mongock.runner.core.executor.MongockRunner;
 import io.mongock.runner.standalone.MongockStandalone;
 import lombok.extern.slf4j.Slf4j;

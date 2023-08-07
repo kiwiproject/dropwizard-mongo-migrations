@@ -2,9 +2,8 @@ package org.kiwiproject.migrations.mongo;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
-import io.dropwizard.Configuration;
+import io.dropwizard.core.Configuration;
 import io.mongock.driver.api.driver.ConnectionDriver;
-
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
