@@ -40,11 +40,10 @@ class DbCommandTest {
 
         dbCommand.run(null, new Namespace(Map.of("subcommand", "migrate")), new TestMigrationConfiguration());
 
-        var client = MongoClients.create(mongoConnectionString);
-
-        var db = client.getDatabase(mongoDatabaseName);
-
-        assertThat(db.getCollection("myCollection").countDocuments()).isEqualTo(1);
+        try (var client = MongoClients.create(mongoConnectionString)) {
+            var db = client.getDatabase(mongoDatabaseName);
+            assertThat(db.getCollection("myCollection").countDocuments()).isEqualTo(1);
+        }
     }
 
     @Test
@@ -56,15 +55,14 @@ class DbCommandTest {
 
         dbCommand.run(null, new Namespace(Map.of("subcommand", "migrate")), new TestMigrationConfiguration());
 
-        var client = MongoClients.create(mongoConnectionString);
-
-        var db = client.getDatabase(mongoDatabaseName);
-
-        assertThat(db.getCollection("myTemplateCollection").countDocuments()).isEqualTo(1);
+        try (var client = MongoClients.create(mongoConnectionString)) {
+            var db = client.getDatabase(mongoDatabaseName);
+            assertThat(db.getCollection("myTemplateCollection").countDocuments()).isEqualTo(1);
+        }
     }
 
     @Test
-    void testPrintHelp() throws Exception {
+    void testPrintHelp() {
         var dbCommand = new DbCommand<>("db",
                 new TestMongoMigrationConfiguration(mongoConnectionString,
                         mongoDatabaseName, "org.kiwiproject.migrations.mongo.samples.mongodatabase"),
@@ -72,7 +70,7 @@ class DbCommandTest {
 
         final ByteArrayOutputStream baos = new ByteArrayOutputStream();
         createSubparser(dbCommand).printHelp(new PrintWriter(new OutputStreamWriter(baos, UTF_8), true));
-        assertThat(baos.toString(UTF_8.name())).isEqualTo(String.format(
+        assertThat(baos.toString(UTF_8)).isEqualTo(String.format(
                 "usage: db db [-h] {migrate} ...%n" +
                         "%n" +
                         "Run database migration tasks%n" +
