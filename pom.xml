@@ -6,7 +6,7 @@
     <parent>
         <artifactId>kiwi-parent</artifactId>
         <groupId>org.kiwiproject</groupId>
-        <version>3.0.7</version>
+        <version>3.0.8</version>
     </parent>
 
     <artifactId>dropwizard-mongo-migrations</artifactId>
