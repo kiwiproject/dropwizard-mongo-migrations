@@ -30,8 +30,6 @@
         <!-- Versions for required dependencies -->
         <kiwi.version>4.1.0</kiwi.version>
         <kiwi-bom.version>2.0.13</kiwi-bom.version>
-
-        <!-- TODO: Should this be in the BOM?  It is only in this library currently -->
         <mongock.version>5.4.4</mongock.version>
 
         <!-- Versions for test dependencies -->
@@ -52,7 +50,7 @@
                 <type>pom</type>
                 <scope>import</scope>
             </dependency>
-            
+
             <dependency>
                 <groupId>org.kiwiproject</groupId>
                 <artifactId>kiwi</artifactId>
@@ -91,7 +89,7 @@
             <groupId>io.mongock</groupId>
             <artifactId>mongock-standalone</artifactId>
         </dependency>
-        
+
         <dependency>
             <groupId>org.slf4j</groupId>
             <artifactId>slf4j-api</artifactId>
@@ -121,7 +119,7 @@
             <artifactId>mongodb-driver-sync</artifactId>
             <scope>test</scope>
         </dependency>
-        
+
         <dependency>
             <groupId>ch.qos.logback</groupId>
             <artifactId>logback-classic</artifactId>

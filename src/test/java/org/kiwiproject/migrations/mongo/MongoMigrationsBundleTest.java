@@ -47,6 +47,7 @@ class MongoMigrationsBundleTest {
 
         @Override
         public void run(TestMigrationConfiguration testMigrationConfiguration, Environment environment) {
+            // intentionally empty
         }
     };
 
