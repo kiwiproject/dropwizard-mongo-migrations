@@ -13,7 +13,7 @@ import org.bson.Document;
 public class SimpleMigration {
 
     /**
-     * All DDL actions (collection creation, index creation etc.) need to be done in BeforeExecution especially if
+     * All DDL actions (collection creation, index creation, etc.) need to be done in BeforeExecution especially if
      * using transactions.
      */
     @BeforeExecution

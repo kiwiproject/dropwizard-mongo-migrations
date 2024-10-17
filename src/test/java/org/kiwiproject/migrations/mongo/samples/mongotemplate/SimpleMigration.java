@@ -15,7 +15,7 @@ import org.springframework.data.mongodb.core.query.Query;
 public class SimpleMigration {
 
     /**
-     * All DDL actions (collection creation, index creation etc.) need to be done in BeforeExecution especially if
+     * All DDL actions (collection creation, index creation, etc.) need to be done in BeforeExecution especially if
      * using transactions.
      */
     @BeforeExecution
