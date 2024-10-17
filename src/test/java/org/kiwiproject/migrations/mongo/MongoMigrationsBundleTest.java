@@ -1,6 +1,7 @@
 package org.kiwiproject.migrations.mongo;
 
 import static org.assertj.core.api.Assertions.assertThat;
+import static org.kiwiproject.migrations.mongo.MongoTestContainerHelpers.newMongoDBContainer;
 
 import com.mongodb.client.MongoClients;
 import io.dropwizard.core.Application;
@@ -9,14 +10,16 @@ import io.dropwizard.core.setup.Environment;
 import io.mongock.driver.api.driver.ConnectionDriver;
 import io.mongock.driver.mongodb.springdata.v4.SpringDataMongoV4Driver;
 import org.junit.jupiter.api.Test;
-import org.junit.jupiter.api.extension.RegisterExtension;
-import org.kiwiproject.test.junit.jupiter.MongoServerExtension;
 import org.springframework.data.mongodb.core.MongoTemplate;
+import org.testcontainers.containers.MongoDBContainer;
+import org.testcontainers.junit.jupiter.Container;
+import org.testcontainers.junit.jupiter.Testcontainers;
 
+@Testcontainers(disabledWithoutDocker = true)
 class MongoMigrationsBundleTest {
 
-    @RegisterExtension
-    static final MongoServerExtension MONGO_SERVER_EXTENSION = new MongoServerExtension();
+    @Container
+    static final MongoDBContainer MONGODB = newMongoDBContainer();
 
     private final MongoMigrationsBundle<TestMigrationConfiguration> migrationsBundle = new MongoMigrationsBundle<>() {
 
@@ -27,12 +30,12 @@ class MongoMigrationsBundleTest {
 
         @Override
         public String getMongoUri(TestMigrationConfiguration config) {
-            return MONGO_SERVER_EXTENSION.getConnectionString();
+            return MONGODB.getConnectionString();
         }
 
         @Override
         public String getDatabaseName(TestMigrationConfiguration config) {
-            return MONGO_SERVER_EXTENSION.getTestDatabaseName();
+            return "test";
         }
 
         @Override
