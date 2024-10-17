@@ -96,15 +96,22 @@
         </dependency>
 
         <!-- Test dependencies -->
+
         <dependency>
-            <groupId>org.kiwiproject</groupId>
-            <artifactId>kiwi-test</artifactId>
+            <groupId>org.testcontainers</groupId>
+            <artifactId>junit-jupiter</artifactId>
             <scope>test</scope>
         </dependency>
 
         <dependency>
-            <groupId>de.bwaldvogel</groupId>
-            <artifactId>mongo-java-server</artifactId>
+            <groupId>org.testcontainers</groupId>
+            <artifactId>mongodb</artifactId>
+            <scope>test</scope>
+        </dependency>
+
+        <dependency>
+            <groupId>org.kiwiproject</groupId>
+            <artifactId>kiwi-test</artifactId>
             <scope>test</scope>
         </dependency>
 

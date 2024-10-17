@@ -2,40 +2,47 @@ package org.kiwiproject.migrations.mongo;
 
 import static java.nio.charset.StandardCharsets.UTF_8;
 import static org.assertj.core.api.Assertions.assertThat;
+import static org.kiwiproject.migrations.mongo.MongoTestContainerHelpers.newMongoDBContainer;
 
 import com.mongodb.client.MongoClients;
 import net.sourceforge.argparse4j.ArgumentParsers;
 import net.sourceforge.argparse4j.inf.Namespace;
 import net.sourceforge.argparse4j.inf.Subparser;
 import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
-import org.junit.jupiter.api.extension.RegisterExtension;
-import org.kiwiproject.test.junit.jupiter.MongoServerExtension;
+import org.testcontainers.containers.MongoDBContainer;
+import org.testcontainers.junit.jupiter.Container;
+import org.testcontainers.junit.jupiter.Testcontainers;
 
 import java.io.ByteArrayOutputStream;
 import java.io.OutputStreamWriter;
 import java.io.PrintWriter;
 import java.util.Map;
 
+@DisplayName("DbCommand")
+@Testcontainers(disabledWithoutDocker = true)
 class DbCommandTest {
 
-    @RegisterExtension
-    static final MongoServerExtension MONGO_SERVER_EXTENSION = new MongoServerExtension();
+    @Container
+    static final MongoDBContainer MONGODB = newMongoDBContainer();
 
     private String mongoConnectionString;
     private String mongoDatabaseName;
 
     @BeforeEach
     void setUp() {
-        mongoConnectionString = MONGO_SERVER_EXTENSION.getConnectionString();
-        mongoDatabaseName = MONGO_SERVER_EXTENSION.getTestDatabaseName();
+        mongoConnectionString = MONGODB.getConnectionString();
+        mongoDatabaseName = "test";
     }
 
     @Test
     void testRunSubCommandWithMongoDatabase() {
         var dbCommand = new DbCommand<>("db",
-                new TestMongoMigrationConfiguration(mongoConnectionString,
-                        mongoDatabaseName, "org.kiwiproject.migrations.mongo.samples.mongodatabase"),
+                new TestMongoMigrationConfiguration(
+                        mongoConnectionString,
+                        mongoDatabaseName,
+                        "org.kiwiproject.migrations.mongo.samples.mongodatabase"),
                 TestMigrationConfiguration.class);
 
         dbCommand.run(null, new Namespace(Map.of("subcommand", "migrate")), new TestMigrationConfiguration());
@@ -50,7 +57,8 @@ class DbCommandTest {
     void testRunSubCommandWithMongoTemplate() {
         var dbCommand = new DbCommand<>("db",
                 new TestMongoMigrationConfiguration(mongoConnectionString,
-                        mongoDatabaseName, "org.kiwiproject.migrations.mongo.samples.mongotemplate"),
+                        mongoDatabaseName,
+                        "org.kiwiproject.migrations.mongo.samples.mongotemplate"),
                 TestMigrationConfiguration.class);
 
         dbCommand.run(null, new Namespace(Map.of("subcommand", "migrate")), new TestMigrationConfiguration());
@@ -65,7 +73,8 @@ class DbCommandTest {
     void testPrintHelp() {
         var dbCommand = new DbCommand<>("db",
                 new TestMongoMigrationConfiguration(mongoConnectionString,
-                        mongoDatabaseName, "org.kiwiproject.migrations.mongo.samples.mongodatabase"),
+                        mongoDatabaseName,
+                        "org.kiwiproject.migrations.mongo.samples.mongodatabase"),
                 TestMigrationConfiguration.class);
 
         final ByteArrayOutputStream baos = new ByteArrayOutputStream();
@@ -97,7 +106,8 @@ class DbCommandTest {
     void shouldReturnConfigurationClass() {
         var dbCommand = new DbCommand<>("db",
                 new TestMongoMigrationConfiguration(mongoConnectionString,
-                        mongoDatabaseName, "org.kiwiproject.migrations.mongo.samples.mongodatabase"),
+                        mongoDatabaseName,
+                        "org.kiwiproject.migrations.mongo.samples.mongodatabase"),
                 TestMigrationConfiguration.class);
 
         assertThat(dbCommand.getConfigurationClass()).isEqualTo(TestMigrationConfiguration.class);
