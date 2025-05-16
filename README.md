@@ -1,6 +1,6 @@
 ### Dropwizard Mongo Migrations
 
-[![Build](https://github.com/kiwiproject/dropwizard-mongo-migrations/workflows/build/badge.svg)](https://github.com/kiwiproject/dropwizard-mongo-migrations/actions?query=workflow%3Abuild)
+[![Build](https://github.com/kiwiproject/dropwizard-mongo-migrations/actions/workflows/build.yml/badge.svg?branch=main)](https://github.com/kiwiproject/dropwizard-mongo-migrations/actions/workflows/build.yml?query=branch%3Amain)
 [![Quality Gate Status](https://sonarcloud.io/api/project_badges/measure?project=kiwiproject_dropwizard-mongo-migrations&metric=alert_status)](https://sonarcloud.io/dashboard?id=kiwiproject_dropwizard-mongo-migrations)
 [![Coverage](https://sonarcloud.io/api/project_badges/measure?project=kiwiproject_dropwizard-mongo-migrations&metric=coverage)](https://sonarcloud.io/dashboard?id=kiwiproject_dropwizard-mongo-migrations)
 [![CodeQL](https://github.com/kiwiproject/dropwizard-mongo-migrations/actions/workflows/codeql.yml/badge.svg)](https://github.com/kiwiproject/dropwizard-mongo-migrations/actions/workflows/codeql.yml)
