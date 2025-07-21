@@ -6,7 +6,7 @@
     <parent>
         <artifactId>kiwi-parent</artifactId>
         <groupId>org.kiwiproject</groupId>
-        <version>3.0.27</version>
+        <version>3.0.28</version>
     </parent>
 
     <artifactId>dropwizard-mongo-migrations</artifactId>
@@ -29,7 +29,7 @@
     <properties>
         <!-- Versions for required dependencies -->
         <kiwi.version>4.11.1</kiwi.version>
-        <kiwi-bom.version>2.0.27</kiwi-bom.version>
+        <kiwi-bom.version>2.0.28</kiwi-bom.version>
         <mongock.version>5.5.1</mongock.version>
 
         <!-- Versions for test dependencies -->
