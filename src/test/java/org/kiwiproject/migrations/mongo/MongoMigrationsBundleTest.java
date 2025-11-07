@@ -11,9 +11,9 @@ import io.mongock.driver.api.driver.ConnectionDriver;
 import io.mongock.driver.mongodb.springdata.v4.SpringDataMongoV4Driver;
 import org.junit.jupiter.api.Test;
 import org.springframework.data.mongodb.core.MongoTemplate;
-import org.testcontainers.containers.MongoDBContainer;
 import org.testcontainers.junit.jupiter.Container;
 import org.testcontainers.junit.jupiter.Testcontainers;
+import org.testcontainers.mongodb.MongoDBContainer;
 
 @Testcontainers(disabledWithoutDocker = true)
 class MongoMigrationsBundleTest {

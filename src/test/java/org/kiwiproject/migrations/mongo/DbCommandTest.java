@@ -11,9 +11,9 @@ import net.sourceforge.argparse4j.inf.Subparser;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
-import org.testcontainers.containers.MongoDBContainer;
 import org.testcontainers.junit.jupiter.Container;
 import org.testcontainers.junit.jupiter.Testcontainers;
+import org.testcontainers.mongodb.MongoDBContainer;
 
 import java.io.ByteArrayOutputStream;
 import java.io.OutputStreamWriter;
