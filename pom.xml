@@ -32,6 +32,11 @@
         <kiwi-bom.version>3.0.4</kiwi-bom.version>
         <mongock.version>5.5.1</mongock.version>
 
+        <!-- Versions for managed transitive dependencies -->
+        
+        <!-- See note below on plexus-utils re: a Directory Traversal CVE fixed by this version -->
+        <plexus-utils.version>4.0.3</plexus-utils.version>
+
         <!-- Versions for test dependencies -->
         <kiwi-test.version>4.0.2</kiwi-test.version>
 
@@ -61,6 +66,21 @@
                 <groupId>org.kiwiproject</groupId>
                 <artifactId>kiwi-test</artifactId>
                 <version>${kiwi-test.version}</version>
+            </dependency>
+
+            <!-- 
+                Fix: Plexus-Utils has a Directory Traversal vulnerability in its extractFile method
+                See: https://github.com/advisories/GHSA-6fmv-xxpf-w3cw
+
+                There is no 3.x version that fixes the CVE; 4.0.3 is the first patched version.
+                This is a major version bump from the 3.2.0 pulled in transitively by mongock 5.5.1,
+                but maven-artifact 3.6.1 (which introduces plexus-utils) only uses
+                StringUtils.isNotEmpty() from it, so the major version bump is safe.
+            -->   
+             <dependency>
+                <groupId>org.codehaus.plexus</groupId>
+                <artifactId>plexus-utils</artifactId>
+                <version>${plexus-utils.version}</version>
             </dependency>
 
             <dependency>
