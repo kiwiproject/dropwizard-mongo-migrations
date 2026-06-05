@@ -42,8 +42,6 @@
 
         <!-- Sonar properties -->
         <sonar.projectKey>kiwiproject_dropwizard-mongo-migrations</sonar.projectKey>
-        <sonar.organization>kiwiproject</sonar.organization>
-        <sonar.host.url>https://sonarcloud.io</sonar.host.url>
     </properties>
 
     <dependencyManagement>
