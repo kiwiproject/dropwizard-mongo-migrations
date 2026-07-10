@@ -31,6 +31,7 @@
         <kiwi.version>5.4.0</kiwi.version>
         <kiwi-bom.version>3.3.2</kiwi-bom.version>
         <mongock.version>5.5.1</mongock.version>
+        <spring-boot.version>4.0.6</spring-boot.version>
 
         <!-- Versions for managed transitive dependencies -->
         
@@ -79,6 +80,12 @@
                 <groupId>org.codehaus.plexus</groupId>
                 <artifactId>plexus-utils</artifactId>
                 <version>${plexus-utils.version}</version>
+            </dependency>
+
+            <dependency>
+                <groupId>org.springframework.boot</groupId>
+                <artifactId>spring-boot-autoconfigure</artifactId>
+                <version>${spring-boot.version}</version>
             </dependency>
 
             <dependency>
@@ -151,7 +158,6 @@
             <scope>test</scope>
         </dependency>
 
-        <!-- This is needed if the mongodb-springdata-v3-driver is being used -->
         <dependency>
             <groupId>org.springframework.data</groupId>
             <artifactId>spring-data-mongodb</artifactId>
