@@ -82,6 +82,15 @@
                 <version>${plexus-utils.version}</version>
             </dependency>
 
+            <!--
+                The test-scoped spring-data-mongodb dependency pulls spring-boot-autoconfigur in transitively.
+                This project uses mongock-standalone at runtime and is not a Spring Boot application, but we
+                are pinping spring-boot-autoconfigure to a patched version so we don't get flagged for
+                vulnerabilities on the older version that mongodb-springdata-v4-driver depends on. It's
+                actually a version range: [3.0.0-RC1,4.0.0) which is not awesome. I think the version actually
+                resolves to 4.0.0-RC2 since the range specifies the upper bound as exclusive. However, it does
+                still seem to work using 4.x versions.
+            -->
             <dependency>
                 <groupId>org.springframework.boot</groupId>
                 <artifactId>spring-boot-autoconfigure</artifactId>
