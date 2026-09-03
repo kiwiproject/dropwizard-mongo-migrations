@@ -36,7 +36,7 @@
         <!-- Versions for managed transitive dependencies -->
         
         <!-- See note below on plexus-utils re: a Directory Traversal CVE fixed by this version -->
-        <plexus-utils.version>4.0.3</plexus-utils.version>
+        <plexus-utils.version>4.1.0</plexus-utils.version>
 
         <!-- Versions for test dependencies -->
         <kiwi-test.version>4.3.0</kiwi-test.version>
