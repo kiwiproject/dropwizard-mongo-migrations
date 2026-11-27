@@ -31,7 +31,7 @@
         <kiwi.version>5.4.1</kiwi.version>
         <kiwi-bom.version>3.3.6</kiwi-bom.version>
         <mongock.version>5.5.1</mongock.version>
-        <spring-boot.version>4.1.2</spring-boot.version>
+        <spring-boot.version>4.1.3</spring-boot.version>
 
         <!-- Versions for managed transitive dependencies -->
         
